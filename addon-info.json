@@ -1,0 +1,7 @@
+{
+  "name": "vim-diff-indicator",
+  "dependencies": {
+    "maktaba": {"type": "git", "url": "git://github.com/google/maktaba"}
+    "vim-signify": {"type": "http", "url": "https://github.com//paulhybryant/vim-sigmify"}
+  }
+}
