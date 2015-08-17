@@ -4,5 +4,5 @@ if !s:enter
 endif
 
 
-nnoremap <unique> <silent> <leader>di :call indicator#OpenIndicatorWindow()
-nnoremap <unique> <silent> <leader>dc :call indicator#CloseIndicatorWindow()
+nnoremap <unique> <silent> <leader>di :call indicator#OpenIndicatorWindow()<CR>
+nnoremap <unique> <silent> <leader>dc :call indicator#CloseIndicatorWindow()<CR>

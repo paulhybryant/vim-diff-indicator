@@ -1,5 +1,6 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldlevel=0 foldmethod=marker filetype=vim nospell:
 
+let s:plugin = maktaba#plugin#Get('vim-diff-indicator')
 call s:plugin.Load('globals')
 
 ""
