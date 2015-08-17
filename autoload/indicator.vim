@@ -42,12 +42,12 @@ function! indicator#OpenIndicatorWindow()  " {{{
 
   " Initialize the indicator window
   call s:UpdateLocationIndicator(line('.'), line('$'))
-  call s:RefreshDiffOverview(b:sy.hunks)
+  call s:RefreshDiffOverview(b:sy.hunks, line('$'))
 
   " Creates the buffer-local autocmd
   autocmd CursorMoved * if exists('b:sy.hunks') | :call s:UpdateLocationIndicator(line('.'), line('$'))
-  autocmd BufWritePost * if exists('b:sy.hunks') | :call s:RefreshDiffOverview(b:sy.hunks)
-  autocmd BufEnter * if exists('b:sy.hunks') | :call s:RefreshDiffOverview(b:sy.hunks)
+  autocmd BufWritePost * if exists('b:sy.hunks') | :call s:RefreshDiffOverview(b:sy.hunks, line('$'))
+  autocmd BufEnter * if exists('b:sy.hunks') | :call s:RefreshDiffOverview(b:sy.hunks, line('$'))
 endfunction
 " }}}
 
@@ -61,23 +61,22 @@ endfunction
 " }}}
 
 " Refresh the diff overview buffer
-function! s:RefreshDiffOverview(hunks) " {{{
+function! s:RefreshDiffOverview(hunks, total) " {{{
   if bufwinnr(g:indicator_bufnr) == -1
     return
   endif
   execute g:indicator_winnr . 'wincmd w'
   " Clear the contents
-  let l:numlines = winheight(g:indicator_winnr)
-  for i in range(1, l:numlines)
+  let l:height = winheight(g:indicator_winnr)
+  for i in range(1, l:height)
     call setline(i, '')
   endfor
   execute 'sign unplace * buffer=' . g:indicator_bufnr
 
   let l:indicator_signs = {}
-  let l:height = winheight(g:indicator_winnr)
   for hunk in a:hunks
-    let l:start = hunk['start'] * l:height / l:numlines + 1
-    let l:end = hunk['end'] * l:height / l:numlines + 1
+    let l:start = float2nr(round(hunk['start'] * l:height / a:total * 1.0)) + 1
+    let l:end = float2nr(round(hunk['end'] * l:height / a:total * 1.0)) + 1
     for i in range(l:start, l:end)
       execute 'sign place ' . i . ' line=' . i . ' name=' . hunk['type'] . ' buffer=' . g:indicator_bufnr
       let l:indicator_signs[i] = hunk['type']
