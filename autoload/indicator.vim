@@ -1,12 +1,14 @@
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldlevel=0 foldmethod=marker filetype=vim nospell:
 
-" Opens a new split for the indicator window on the right
-function! indicator#OpenIndicatorWindow()  " {{{
+call s:plugin.Load('globals')
+
+""
+" Opens a new split for the indicator window
+function! indicator#OpenIndicatorWindow() abort " {{{
   if !exists('b:sy.hunks')
     return
   endif
-
-  execute 'sign define ' . g:indicator_name . ' text=#'
+  execute 'sign define ' . g:indicator_name . ' text=' . s:plugin.Flag('IndicatorSign')
 
   " Figure out how to split and edit a buffer, with width specified, like vnew
   " if exists('g:indicator_bufnr') && !bufloaded(g:indicator_bufnr)
@@ -51,8 +53,10 @@ function! indicator#OpenIndicatorWindow()  " {{{
 endfunction
 " }}}
 
+
+""
 " Closes the indicator window
-function! indicator#CloseIndicatorWindow() " {{{
+function! indicator#CloseIndicatorWindow() abort " {{{
   if bufwinnr(g:indicator_bufnr) == -1
     return
   endif
@@ -60,8 +64,10 @@ function! indicator#CloseIndicatorWindow() " {{{
 endfunction
 " }}}
 
+
+""
 " Refresh the diff overview buffer
-function! s:RefreshDiffOverview(hunks, total) " {{{
+function! s:RefreshDiffOverview(hunks, total) abort " {{{
   if bufwinnr(g:indicator_bufnr) == -1
     return
   endif
@@ -87,8 +93,10 @@ function! s:RefreshDiffOverview(hunks, total) " {{{
 endfunction
 " }}}
 
+
+""
 " Refresh the location indicator sign
-function! s:UpdateLocationIndicator(linenr, total) " {{{
+function! s:UpdateLocationIndicator(linenr, total) abort " {{{
   if !exists('b:indicator_linenr')
     let b:indicator_linenr = -1
   endif

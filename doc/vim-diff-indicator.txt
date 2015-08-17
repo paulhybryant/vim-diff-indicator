@@ -1,0 +1,38 @@
+*vim-diff-indicator.txt*
+                                                          *vim-diff-indicator*
+
+==============================================================================
+CONTENTS                                         *vim-diff-indicator-contents*
+  1. Configuration.................................|vim-diff-indicator-config|
+  2. Commands....................................|vim-diff-indicator-commands|
+
+==============================================================================
+CONFIGURATION                                      *vim-diff-indicator-config*
+
+This plugin uses maktaba flags for configuration. Install Glaive
+(https://github.com/google/glaive) and use the |:Glaive| command to configure
+them.
+
+                                         *vim-diff-indicator:plugin[commands]*
+Configures whether plugin/commands.vim should be loaded.
+Default: 1 `
+
+                                          *vim-diff-indicator:plugin[globals]*
+Configures whether plugin/globals.vim should be loaded.
+Default: 1 `
+
+                                         *vim-diff-indicator:plugin[mappings]*
+Configures whether plugin/mappings.vim should be loaded.
+Default: 0 `
+
+==============================================================================
+COMMANDS                                         *vim-diff-indicator-commands*
+
+:OpenDiffIndicator                                        *:OpenDiffIndicator*
+  Open the diff indicator window
+
+:CloseDiffIndicator                                      *:CloseDiffIndicator*
+  Close the diff indicator window
+
+
+vim:tw=78:ts=8:ft=help:norl:
