@@ -67,6 +67,7 @@ function! s:RefreshDiffOverview(hunks, total) abort " {{{
   if bufwinnr(g:indicator_bufnr) == -1
     return
   endif
+
   execute g:indicator_winnr . 'wincmd w'
   " Clear the contents
   let l:height = winheight(g:indicator_winnr)
