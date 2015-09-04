@@ -16,6 +16,7 @@ function! indicator#OpenIndicatorWindow() abort " {{{
     " Set the global variable storing the buffer id of the indicator buffer.
     let g:indicator_bufnr = bufnr('%')
     let g:indicator_winnr = winnr()
+    let b:DiffIndicator = g:indicator_ft
     " Set attributes for the indicator window
     silent! execute 'setlocal filetype=' . g:indicator_ft
     setlocal nonu
